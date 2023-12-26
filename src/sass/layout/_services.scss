@@ -3,7 +3,7 @@
 @use "../abstracts/media-query"as mq;
 
 .services {
-    padding-block: 50px;
+    padding-block-end: 50px;
     
     &__grid {
         display: grid;
@@ -20,6 +20,9 @@
     }
     
     &__slider {
+        position: relative;
+        width: 201px;
+
         & .slider-item {
             width: 201px;
             position: relative;
@@ -36,6 +39,21 @@
             bottom: 0;
             right: 0;
             text-align: center;
+        }
+
+        & .slider-btn {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            border: none;
+            background-color: transparent;
+        }
+
+        & > .slider-btn:nth-child(3) {
+            right: 0;
+            left: auto;
         }
     }
     

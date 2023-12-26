@@ -1,0 +1,18 @@
+.slider {
+    overflow: hidden;
+
+    &-inner {
+        display: flex;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &-item {
+
+    }
+
+    &-btn {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,4 +1,8 @@
+import slider from "./modules/slider";
+
 window.addEventListener('DOMContentLoaded', () => {
+
+    slider('.services__slider');
 
     const introSwitch = document.querySelector('.intro__house-windows-toggler input.window-toggler__input'),
     introHouseWindow = document.querySelector('.intro__house-window');

@@ -117,8 +117,49 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/main.js":[function(require,module,exports) {
+})({"js/modules/slider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+function slider(selector) {
+  var slideIndex = 0;
+  var elSlider = document.querySelector(selector),
+    elSliderWidth = window.getComputedStyle(elSlider).width,
+    elSliderField = elSlider.querySelector('.slider-inner'),
+    elsSliderItem = elSlider.querySelectorAll('.slider-item'),
+    elBtnPrev = elSlider.querySelector('.js-slider-control-prev'),
+    elBtnNext = elSlider.querySelector('.js-slider-control-next');
+  elSliderField.style.width = "".concat(100 * elsSliderItem.length, "%");
+  elBtnPrev.addEventListener('click', function () {
+    slideControl(-1);
+  });
+  elBtnNext.addEventListener('click', function () {
+    slideControl(1);
+  });
+  function slideControl(number) {
+    slideIndex += number;
+    if (slideIndex < 0) {
+      slideIndex = elsSliderItem.length - 1;
+    } else if (slideIndex > elsSliderItem.length - 1) {
+      slideIndex = 0;
+    }
+    showSlide(slideIndex);
+  }
+  function showSlide(idx) {
+    elSliderField.style.transform = "translateX(-".concat(+elSliderWidth.replace(/(r?em|px|\%)$/g, '') * idx, "px)");
+  }
+}
+var _default = exports.default = slider;
+},{}],"js/main.js":[function(require,module,exports) {
+"use strict";
+
+var _slider = _interopRequireDefault(require("./modules/slider"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 window.addEventListener('DOMContentLoaded', function () {
+  (0, _slider.default)('.services__slider');
   var introSwitch = document.querySelector('.intro__house-windows-toggler input.window-toggler__input'),
     introHouseWindow = document.querySelector('.intro__house-window');
   introSwitch.addEventListener("click", function (evt) {
@@ -179,7 +220,7 @@ window.addEventListener('DOMContentLoaded', function () {
   inputElement.addEventListener('keydown', enforceFormat);
   inputElement.addEventListener('keyup', formatToPhone);
 });
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/slider":"js/modules/slider.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
