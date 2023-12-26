@@ -1,0 +1,73 @@
+@use "../abstracts/functions"as fn;
+@use "../abstracts/mixins"as mx;
+@use "../abstracts/media-query"as mq;
+
+.services {
+    padding-block: 50px;
+    
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(201px, 1fr));
+        justify-items: center;
+        gap: 20px;
+    }
+    
+    &__card {
+        align-items: center;
+        max-width: 250px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    &__slider {
+        & .slider-item {
+            width: 201px;
+            position: relative;
+        }
+        
+        &-img {
+            display: block;
+        }
+        
+        &-text {
+            margin: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+        }
+    }
+    
+    &__img {
+        display: block;
+        width: 201px;
+        height: 201px;
+    }
+    
+    &__heading {
+        margin-block: 0px 8px;
+        font-size: 1.8rem;
+    }
+    
+    &__list {
+        padding-inline-start: 16px;
+        margin-block: 0px 8px;
+        
+        > li {
+            line-height: normal;
+            margin-bottom: 1px;
+        }
+    }
+    
+    &__subheading {
+        margin-top: auto;
+        padding-left: 10px;
+        border-left: 3px solid fn.color("bg-color");
+    }
+    
+    &__guarante-block {
+        margin-block-start: 16px;
+        @include mx.flex();
+    }
+}

@@ -12,10 +12,12 @@
     border-radius: 30px;
     @include c.box-shadow(false);
     text-shadow: c.$text-shadow;
+    text-decoration: none;
     transition: background-color 0.2s linear,
         box-shadow 0.2s linear;
         overflow: hidden;
     outline: none;
+    white-space: nowrap;
 
     &:hover {
         cursor: pointer;

@@ -1,0 +1,47 @@
+@use "../abstracts/mixins" as mx;
+@use "../abstracts/media-query" as mq;
+
+.guarante-block {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 25px 30px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+
+    @include mq.custom-mq(600px) {
+        flex-direction: column;
+    }
+
+    &__content {
+        @include mx.flex() {
+            gap: 16px;
+
+            @include mq.custom-mq(400px) {
+                align-items: flex-start;
+            }
+        };
+    }
+    
+    &__img {
+        display: inline-block;
+        flex-shrink: 0;
+    }
+
+    &__heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+
+        @include mq.custom-mq(400px) {
+            font-size: 1.4rem;
+        }
+
+        &  > span {
+            display: block;
+
+            @include mq.custom-mq(400px) {
+                display: none;
+            }
+        }
+    }
+}

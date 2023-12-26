@@ -1,0 +1,54 @@
+@use "../abstracts/media-query" as mq;
+@use "../abstracts/mixins" as mx;
+@use "../abstracts/functions" as fn;
+
+.title-block {
+    text-align: center;
+
+    &__heading {
+        margin-block: 0px;
+        padding: 9px 50px;
+        font-size: 2.4rem;
+        color: fn.color("white");
+        z-index: 1;
+
+        @include mq.mq(small) {
+            font-size: 1.6rem;
+        }
+
+        @include mq.mq(medium) {
+            padding: 9px 60px 9px 0px;
+        }
+
+        @include mx.pseudo($left: -9999px) {
+            background-color: fn.color("bg-color");
+            transform: skew(-30deg);
+            z-index: -1;
+
+            @include mq.mq(large) {
+                right: 10%;
+            }
+        }
+    }
+
+    &__subheading {
+        top: -20px;
+        padding: 25px 20px 5px;
+        color: fn.color("grey");
+
+        @include mq.mq(small) {
+            font-size: 1.2rem;
+            padding: 25px 60px 5px 0px;
+        }
+
+        @include mx.pseudo($left: -9999px) {
+            background-color: #ececec;
+            transform: skew(-30deg);
+            z-index: -1;
+
+            @include mq.mq(large) {
+                right: 10%;
+            }
+        }
+    }
+}
