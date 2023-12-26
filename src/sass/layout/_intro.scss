@@ -1,0 +1,214 @@
+@use "../abstracts/functions" as fn;
+@use "../abstracts/mixins" as mx;
+@use "../abstracts/media-query" as mq;
+
+.intro {
+    background-image: url("../assets/imgs/bg-into.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding-block: 50px;
+    overflow-x: hidden;
+    
+    > .container {
+        position: relative;
+    }
+    
+    &__content {
+        @include mq.mq(large) {
+            max-width: 600px;
+        }
+        
+        @include mq.mq(sm-large) {
+            margin-inline: auto;
+        }
+    }
+    
+    &__title {
+        margin-block: 0px 8px;
+        font-size: 6rem;
+        font-weight: 900;
+        line-height: 100%;
+        color: fn.color("text-color");
+        
+        @include mq.mq(sm-large) {
+            text-align: center;
+        }
+    }
+    
+    &__subtitle {
+        font-weight: 700;
+        font-size: 2.6rem;
+        line-height: 100%;
+        
+        @include mq.mq(sm-large) {
+            text-align: center;
+        }
+    }
+    
+    &__categories {
+        margin-block: 3rem 4rem;
+        
+        @include mq.mq(sm-large) {
+            margin-block-end: 10px;
+            margin-inline: auto;
+            width: max-content;
+        }
+        
+        @include mq.mq(small) {
+            width: 100%;
+        }
+        
+        li {
+            font-size: 1.8rem;
+            line-height: 140%;
+            
+            @include mq.mq(small) {
+                font-size: 1.6rem;
+                line-height: 100%;
+            }
+        }
+    }
+    
+    &__house-wrapper {
+        width: 886px;
+        height: 555px;
+        position: absolute;
+        top: -50px;
+        left: 40%;
+        z-index: 99;
+        
+        @include mq.mq(large) {
+            width: 693px;
+            height: 434px;
+            left: 44%;
+            top: 0;
+            margin-block-start: 0px;
+        }
+        
+        @include mq.mq(sm-large) {
+            position: relative;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin-block-end: 26px;
+        }
+    }
+    
+    &__house-img {
+        position: absolute;
+        object-position: top;
+        object-fit: cover;
+        width: 886px;
+        height: 100%;
+        
+        @include mq.mq(sm-large) {
+            height: auto;
+            position: relative;
+        }
+    }
+    
+    &__house-window {
+        height: 100px;
+        transition: height 2.5s ease;
+
+        @include mq.custom-mq(400px) {
+            height: 50px;
+        }
+        
+        @include mq.mq(sm-large) {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        &--active {
+            height: 100%;
+            
+            @include mq.mq(sm-large) {
+                height: calc(100% - 7px);
+            }
+        }
+    }
+    
+    &__house-windows-toggler {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f6f6f6;
+        padding: 10px 22px;
+        border-radius: 10px;
+        @include mx.flex() {
+            gap: 12px;
+        };
+        
+        @include mq.mq(sm-large) {
+            bottom: -16px;
+        }
+    }
+    
+    &__stock {
+        font-size: 1.8rem;
+        color: fn.color("white");
+        z-index: 1;
+        
+        @include mq.custom-mq(600px) {
+            font-size: 1.6rem;
+        }
+        
+        @include mx.pseudo($left: -50px) {
+            background-color: fn.color("primary");
+            transform: skew(20deg);
+            z-index: -1;
+            
+            @include mq.mq(sm-large) {
+                left: 0;
+                transform: skew(30deg);
+            }
+            
+            @include mq.custom-mq(655px) {
+                right: -90px;
+                left: 10px;
+            }
+        };
+        
+        @include mx.pseudo($loc: after, $left: -60px) {
+            background-color: rgba(fn.color("primary"), 0.36);
+            transform: skew(20deg);
+            z-index: -1;
+            
+            @include mq.mq(sm-large) {
+                left: -10px;
+                transform: skew(30deg);
+                
+                
+                @include mq.custom-mq(655px) {
+                    right: -90px;
+                    left: 0px;
+                }}
+            }
+            
+            &-inner {
+                width: max-content;
+                text-align: center;
+                
+                @include mq.mq(sm-large) {
+                    margin-inline: auto;
+                }
+                
+                @include mq.custom-mq(600px) {
+                    width: 100%;
+                    padding-inline: 16px;
+                }
+            }
+        }
+        
+        &__form {
+            padding: 15px;
+            
+            @include mq.mq(sm-large) {
+                @include mx.flex(column)
+            }
+        }
+    }

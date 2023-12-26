@@ -1,0 +1,84 @@
+@use "../abstracts/functions" as fn;
+@use "../abstracts/mixins" as mx;
+@use "../abstracts/colors" as c;
+
+.btn--orange {
+    display: inline-block;
+    max-width: 100%;
+    padding: 10px 20px;
+    background-color: fn.color("primary");
+    color: fn.color("white");
+    border: none;
+    border-radius: 30px;
+    @include c.box-shadow(false);
+    text-shadow: c.$text-shadow;
+    transition: background-color 0.2s linear,
+        box-shadow 0.2s linear;
+        overflow: hidden;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+        background-color: fn.color("dark-primary");
+        @include c.box-shadow(true);
+    }
+
+    @include mx.pseudo() {
+        background-color: rgba(fn.color("white"), 0.36);
+        width: 20px;
+        transform: skew(-10deg);
+        @include mx.animation(0, 3s, flare, ease-in-out, infinite);
+    }
+}
+
+@include mx.keyframe("flare") {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+
+.window-toggler {
+    width: 52px;
+    height: 26px;
+    background-image: url("../assets/imgs/switch-toggler-field.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+
+    &__input {
+        width: 0;
+        height: 0;
+        opacity: 0;
+
+        &:checked + .window-toggler__slider::before {
+            margin-left: auto;
+        }
+    }
+
+    &__slider {
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 36px;
+        transition: transform 0.3s ease;
+
+        
+
+        @include mx.pseudo($parPos: absolute, $left: 2px, $right: 2px) {
+            background-image: url("../assets/imgs/orange-button.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 26px;
+            height: 26px;
+        }
+    }
+}

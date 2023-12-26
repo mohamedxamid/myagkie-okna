@@ -1,0 +1,19 @@
+$colors: (
+    "bg-color": #183749,
+    "text-color": #183749,
+    "primary": #fc6f32,
+    "dark-primary": #f74d04,
+    "white": #fff,
+    "grey": #757575,
+    "black": #000,
+    "yellow": #ffcd0f,
+);
+
+@mixin box-shadow($hover: false) {
+    @if $hover {
+        box-shadow: 0 5px 6px 1px rgba(0, 0, 0, .14);
+    } @else {
+        box-shadow: 0 9px 6px 1px rgba(0, 0, 0, .14);
+    }
+}
+$text-shadow: 0 5px 5px rgb(0 0 0 / 26%);

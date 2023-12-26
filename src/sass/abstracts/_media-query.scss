@@ -1,0 +1,21 @@
+$breakpoints: (
+    small: 450px,
+    medium: 65em,
+    tablet: 900px,
+    sm-large: 1025px,
+    large: 1200px
+);
+
+@mixin mq($key) {
+    $size: map-get($breakpoints, $key);
+
+    @media only screen and (max-width: $size) {
+        @content;
+    }
+}
+
+@mixin custom-mq($size) {
+    @media only screen and (max-width: $size) {
+        @content;
+    }
+}
