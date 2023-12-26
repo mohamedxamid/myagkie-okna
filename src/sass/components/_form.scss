@@ -40,5 +40,9 @@
     &__privacy-policy {
         margin-block: 1rem;
         font-size: 1rem;
+
+        @include custom-mq(600px) {
+            text-align: center;
+        }
     }
 }
