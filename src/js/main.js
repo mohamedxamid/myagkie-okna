@@ -4,6 +4,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     slider('.services__slider');
 
+
+    const featureSwitch = document.querySelector('.features__house-windows-toggler input.window-toggler__input'),
+    featureHouseWindow = document.querySelector('.features__img--window');
+    featureSwitch.addEventListener("click", (evt) => {
+        if (evt.target.checked) {
+            featureHouseWindow.classList.add('features__img--window_active')
+        } else {
+            featureHouseWindow.classList.remove('features__img--window_active')
+        }
+    })
+
     const introSwitch = document.querySelector('.intro__house-windows-toggler input.window-toggler__input'),
     introHouseWindow = document.querySelector('.intro__house-window');
     introSwitch.addEventListener("click", (evt) => {

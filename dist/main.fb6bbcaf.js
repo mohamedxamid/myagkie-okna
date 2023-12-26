@@ -160,6 +160,15 @@ var _slider = _interopRequireDefault(require("./modules/slider"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 window.addEventListener('DOMContentLoaded', function () {
   (0, _slider.default)('.services__slider');
+  var featureSwitch = document.querySelector('.features__house-windows-toggler input.window-toggler__input'),
+    featureHouseWindow = document.querySelector('.features__img--window');
+  featureSwitch.addEventListener("click", function (evt) {
+    if (evt.target.checked) {
+      featureHouseWindow.classList.add('features__img--window_active');
+    } else {
+      featureHouseWindow.classList.remove('features__img--window_active');
+    }
+  });
   var introSwitch = document.querySelector('.intro__house-windows-toggler input.window-toggler__input'),
     introHouseWindow = document.querySelector('.intro__house-window');
   introSwitch.addEventListener("click", function (evt) {
