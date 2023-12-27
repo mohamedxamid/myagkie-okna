@@ -1,12 +1,23 @@
-function slider(selector) {
+function slider(wrapper) {
     let slideIndex = 0;
     
-    const elSlider = document.querySelector(selector),
+    const elSlider = wrapper.querySelector(".slider"),
         elSliderWidth = window.getComputedStyle(elSlider).width,
         elSliderField = elSlider.querySelector('.slider-inner'),
         elsSliderItem = elSlider.querySelectorAll('.slider-item'),
-        elBtnPrev = elSlider.querySelector('.js-slider-control-prev'),
-        elBtnNext = elSlider.querySelector('.js-slider-control-next');
+        elBtnPrev = wrapper.querySelector('.js-slider-control-prev'),
+        elBtnNext = wrapper.querySelector('.js-slider-control-next'),
+        elsColor = wrapper.querySelectorAll('.slider-list li');
+
+        
+        elsColor.forEach(elColor => {
+            elColor.addEventListener('click', (evt) => {
+                slideIndex = +evt.target.dataset.slideTo;
+                deactivateColors()
+                activateColor(slideIndex)
+                showSlide(slideIndex)
+            })
+        })
 
         elSliderField.style.width = `${100 * elsSliderItem.length}%`
 
@@ -27,10 +38,22 @@ function slider(selector) {
             }
 
             showSlide(slideIndex);
+            deactivateColors()
+            activateColor(slideIndex)
         }
 
         function showSlide(idx) {
             elSliderField.style.transform = `translateX(-${+elSliderWidth.replace(/(r?em|px|\%)$/g, '') * idx}px)`;
+        }
+
+        function activateColor(idx) {
+            elsColor[idx].classList.add("products__color--active")
+        }
+
+        function deactivateColors() {
+            elsColor.forEach(elColor => {
+                elColor.classList.remove("products__color--active")
+            })
         }
 }
 

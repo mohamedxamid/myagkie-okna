@@ -124,14 +124,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-function slider(selector) {
+function slider(wrapper) {
   var slideIndex = 0;
-  var elSlider = document.querySelector(selector),
+  var elSlider = wrapper.querySelector(".slider"),
     elSliderWidth = window.getComputedStyle(elSlider).width,
     elSliderField = elSlider.querySelector('.slider-inner'),
     elsSliderItem = elSlider.querySelectorAll('.slider-item'),
-    elBtnPrev = elSlider.querySelector('.js-slider-control-prev'),
-    elBtnNext = elSlider.querySelector('.js-slider-control-next');
+    elBtnPrev = wrapper.querySelector('.js-slider-control-prev'),
+    elBtnNext = wrapper.querySelector('.js-slider-control-next'),
+    elsColor = wrapper.querySelectorAll('.slider-list li');
+  elsColor.forEach(function (elColor) {
+    elColor.addEventListener('click', function (evt) {
+      slideIndex = +evt.target.dataset.slideTo;
+      deactivateColors();
+      activateColor(slideIndex);
+      showSlide(slideIndex);
+    });
+  });
   elSliderField.style.width = "".concat(100 * elsSliderItem.length, "%");
   elBtnPrev.addEventListener('click', function () {
     slideControl(-1);
@@ -147,9 +156,19 @@ function slider(selector) {
       slideIndex = 0;
     }
     showSlide(slideIndex);
+    deactivateColors();
+    activateColor(slideIndex);
   }
   function showSlide(idx) {
     elSliderField.style.transform = "translateX(-".concat(+elSliderWidth.replace(/(r?em|px|\%)$/g, '') * idx, "px)");
+  }
+  function activateColor(idx) {
+    elsColor[idx].classList.add("products__color--active");
+  }
+  function deactivateColors() {
+    elsColor.forEach(function (elColor) {
+      elColor.classList.remove("products__color--active");
+    });
   }
 }
 var _default = exports.default = slider;
@@ -159,7 +178,18 @@ var _default = exports.default = slider;
 var _slider = _interopRequireDefault(require("./modules/slider"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 window.addEventListener('DOMContentLoaded', function () {
-  (0, _slider.default)('.services__slider');
+  (0, _slider.default)(document.querySelector('.services__grid'));
+  var elsColor = document.querySelectorAll('.products__item');
+  elsColor.forEach(function (item) {
+    (0, _slider.default)(item);
+  });
+  var elsReadMoreBtn = document.querySelectorAll('.products__desc-read-more');
+  elsReadMoreBtn.forEach(function (elReadMoreBtn) {
+    elReadMoreBtn.addEventListener('click', function (evt) {
+      evt.preventDefault();
+      elReadMoreBtn.previousElementSibling.classList.toggle("products__desc--active");
+    });
+  });
   var featureSwitch = document.querySelector('.features__house-windows-toggler input.window-toggler__input'),
     featureHouseWindow = document.querySelector('.features__img--window');
   featureSwitch.addEventListener("click", function (evt) {
