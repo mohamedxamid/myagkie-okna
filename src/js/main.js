@@ -7,6 +7,18 @@ window.addEventListener('DOMContentLoaded', () => {
     elsColor.forEach(item => {
         slider(item)
     })
+
+
+    window.addEventListener('resize', () => {
+        if (window.screen.width<= 400) {
+            document.head.querySelector('[name="viewport"]').content = "user-scalable=no,width=375"
+        } else if (window.screen.width <= 800) {
+            document.head.querySelector('[name="viewport"]').content = "user-scalable=no,width=674"
+        } else {
+            document.head.querySelector('[name="viewport"]').content =  "width=device-width, initial-scale=1.0"
+        }
+        // 674
+    })
     
     
     

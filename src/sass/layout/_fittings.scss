@@ -1,0 +1,84 @@
+@use "../abstracts/functions" as fn;
+@use "../abstracts/mixins" as mx;
+
+.fittings {
+    padding-block: 50px;
+    
+    &__grid-container {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+        gap: 16px;
+    }
+
+    &__card {
+
+    }
+}
+
+.fitting-card {
+    max-width: 232px;
+    width: 100%;
+    text-align: center;
+    line-height: normal;
+
+    &__img-wrapper {
+        margin-block-end: 16px;
+    }
+
+    &__img {
+        display: block;
+        width: 188px;
+        height: 188px;
+        margin-inline: auto;
+        margin-block-end: -30px;
+    }
+
+    &__price-block {
+        background-color: fn.color("yellow");
+        padding: 7px 13px 7px 20px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include mx.pseudo($top: 50%, $left: 5px) {
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__price-text {
+        min-height: 30px;
+        display: flex;
+        align-items: flex-start;
+        font-size: 1.4rem;
+        line-height: normal;
+    }
+
+    &__price-text-down {
+        @extend .fitting-card__price-text;
+        align-items: flex-end;
+        font-size: 1.6rem;
+        
+        > span {
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 0.9;
+        }
+    }
+
+    &__title {
+        margin-block: 0px 4px;
+    }
+
+    &__desc {
+        margin-block: 0;
+    }
+}

@@ -183,6 +183,16 @@ window.addEventListener('DOMContentLoaded', function () {
   elsColor.forEach(function (item) {
     (0, _slider.default)(item);
   });
+  window.addEventListener('resize', function () {
+    if (window.screen.width <= 400) {
+      document.head.querySelector('[name="viewport"]').content = "user-scalable=no,width=375";
+    } else if (window.screen.width <= 800) {
+      document.head.querySelector('[name="viewport"]').content = "user-scalable=no,width=674";
+    } else {
+      document.head.querySelector('[name="viewport"]').content = "width=device-width, initial-scale=1.0";
+    }
+    // 674
+  });
   var elsReadMoreBtn = document.querySelectorAll('.products__desc-read-more');
   elsReadMoreBtn.forEach(function (elReadMoreBtn) {
     elReadMoreBtn.addEventListener('click', function (evt) {
@@ -284,7 +294,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59710" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62110" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
